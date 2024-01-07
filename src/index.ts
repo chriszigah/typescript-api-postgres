@@ -1,0 +1,25 @@
+import http from "http";
+
+import app from "./app";
+
+import logger from "./helpers/logger";
+
+const server = http.createServer(app);
+
+const PORT = process.env.PORT || 7242;
+
+const start = async () => {
+  try {
+    logger.info(`App is running at http://localhost:${PORT}`);
+    server.listen(PORT, () => {
+      console.log(
+        `Server is running in ${process.env.NODE_ENV} mode on Port ${PORT} (^_^)`
+      );
+    });
+  } catch (e) {
+    console.log(e);
+    process.exit(1);
+  }
+};
+
+start();
